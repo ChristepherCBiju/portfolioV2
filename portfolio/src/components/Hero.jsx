@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Canvas, extend } from '@react-three/fiber'
 import { OrbitControls, Effects } from '@react-three/drei'
 import { UnrealBloomPass } from 'three-stdlib'
@@ -11,13 +11,25 @@ export const Hero = ({
   isMobile,
   canvasVisible,
   introPhase,
-  introScrollProgress
+  introScrollProgress,
+  isLoading
 }) => {
+  const [showIntroName, setShowIntroName] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const timer = setTimeout(() => {
+      setShowIntroName(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [isLoading]);
+
   return (
     <section id="home" className="intro-scroll-container">
       <div className="intro-sticky-viewport">
         <div className="intro-canvas-container">
-          {canvasVisible && (
+          {canvasVisible && !isLoading && (
             <Canvas camera={{ position: [0, 80, 110], fov: 45 }}>
               <fog attach="fog" args={['#000000', 0.01]} />
               <ParticleSwarm isMobile={isMobile} />
@@ -30,9 +42,9 @@ export const Hero = ({
         </div>
 
         <div className="intro-text-wrapper">
-          <div className={`intro-text ${introPhase === 0 ? 'active' : ''}`}>
+          <div className={`intro-text ${introPhase === 0 && showIntroName ? 'active' : ''}`}>
             <span className="intro-sub">Introducing</span>
-            <h1 className="intro-title"style={{ color: 'var(--accent-yellow)' }}>CHRISTEPHER C BIJU</h1>
+            <h1 className="intro-title" style={{ color: 'var(--accent-yellow)' }}>CHRISTEPHER C BIJU</h1>
             <p className="intro-desc">Computer Science undergraduate (CGPA: 8.49) specializing in full-stack web engineering, machine learning pipelines, and visual UI/UX designs.</p>
           </div>
 
@@ -50,12 +62,12 @@ export const Hero = ({
 
           <div className={`intro-text ${introPhase === 3 ? 'active' : ''}`}>
             <span className="intro-sub">Design Craft</span>
-            <h1 className="intro-title"style={{ color: 'var(--accent-lime)' }}>UI/UX Designer</h1>
+            <h1 className="intro-title" style={{ color: 'var(--accent-lime)' }}>UI/UX Designer</h1>
             <p className="intro-desc">Structuring modern wireframes, creating fluid responsiveness, and developing premium interaction micro-animations.</p>
           </div>
         </div>
 
-        <div className={`scroll-prompt ${introScrollProgress > 0.9 ? 'hidden' : ''}`}>
+        <div className={`scroll-prompt ${introScrollProgress > 0.9 || !showIntroName ? 'hidden' : ''}`}>
           <span>Scroll Down</span>
           <svg className="scroll-prompt-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

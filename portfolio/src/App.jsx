@@ -7,17 +7,38 @@ import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Loader from './components/Loader'
 import './App.css'
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
+  // Loader state variables
+  const [isLoading, setIsLoading] = useState(true);
+  const [fadeLoader, setFadeLoader] = useState(false);
+
   // Accretion Disk Intro & performance variables
   const [isMobile, setIsMobile] = useState(false);
   const [canvasVisible, setCanvasVisible] = useState(true);
   const [introPhase, setIntroPhase] = useState(0);
   const [introScrollProgress, setIntroScrollProgress] = useState(0);
+
+  // Custom 3-second loader effect
+  useEffect(() => {
+    const fadeTimer = setTimeout(() => {
+      setFadeLoader(true);
+    }, 3000); // 3 seconds loading screen
+
+    const unmountTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3500); // unmount after fade transition completes
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(unmountTimer);
+    };
+  }, []);
 
   // Check mobile width for performance settings
   useEffect(() => {
@@ -150,25 +171,29 @@ function App() {
 
   return (
     <>
-      <Navbar 
-        activeSection={activeSection}
-        introScrollProgress={introScrollProgress}
-        mobileMenuOpen={mobileMenuOpen}
-        toggleMobileMenu={toggleMobileMenu}
-        handleNavClick={handleNavClick}
-      />
-      <Hero 
-        isMobile={isMobile}
-        canvasVisible={canvasVisible}
-        introPhase={introPhase}
-        introScrollProgress={introScrollProgress}
-      />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
-      <Footer handleNavClick={handleNavClick} />
+      {isLoading && <Loader fadeOut={fadeLoader} />}
+      <div className={`main-app-container ${isLoading ? 'loading-active' : ''}`}>
+        <Navbar 
+          activeSection={activeSection}
+          introScrollProgress={introScrollProgress}
+          mobileMenuOpen={mobileMenuOpen}
+          toggleMobileMenu={toggleMobileMenu}
+          handleNavClick={handleNavClick}
+        />
+        <Hero 
+          isMobile={isMobile}
+          canvasVisible={canvasVisible}
+          introPhase={introPhase}
+          introScrollProgress={introScrollProgress}
+          isLoading={isLoading}
+        />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Contact />
+        <Footer handleNavClick={handleNavClick} />
+      </div>
     </>
   )
 }
