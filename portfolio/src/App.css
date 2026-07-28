@@ -1165,7 +1165,7 @@ textarea.form-control {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #000000;
+  background-color: transparent;
   z-index: 10;
 }
 
@@ -1442,6 +1442,19 @@ textarea.form-control {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Global morphing particle canvas background wrapper */
+.global-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  background-color: #000000;
+}
+
 
 
 

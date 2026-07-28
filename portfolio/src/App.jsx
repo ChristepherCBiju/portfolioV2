@@ -8,6 +8,7 @@ import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Loader from './components/Loader'
+import GlobalSwarm from './components/GlobalSwarm'
 import './App.css'
 
 function App() {
@@ -20,7 +21,6 @@ function App() {
 
   // Accretion Disk Intro & performance variables
   const [isMobile, setIsMobile] = useState(false);
-  const [canvasVisible, setCanvasVisible] = useState(true);
   const [introPhase, setIntroPhase] = useState(0);
   const [introScrollProgress, setIntroScrollProgress] = useState(0);
 
@@ -50,19 +50,7 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Monitor canvas visibility to stop looping when hero is off-screen
-  useEffect(() => {
-    const introSection = document.querySelector('.intro-scroll-container');
-    if (!introSection) return;
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        setCanvasVisible(entry.isIntersecting);
-      });
-    }, { threshold: 0.01 });
 
-    observer.observe(introSection);
-    return () => observer.disconnect();
-  }, []);
 
   // Handle active navigation item on scroll and scroll reveals
   useEffect(() => {
@@ -173,6 +161,7 @@ function App() {
     <>
       {isLoading && <Loader fadeOut={fadeLoader} />}
       <div className={`main-app-container ${isLoading ? 'loading-active' : ''}`}>
+        {!isLoading && <GlobalSwarm scrollProgress={introScrollProgress} isMobile={isMobile} />}
         <Navbar 
           activeSection={activeSection}
           introScrollProgress={introScrollProgress}
@@ -181,8 +170,6 @@ function App() {
           handleNavClick={handleNavClick}
         />
         <Hero 
-          isMobile={isMobile}
-          canvasVisible={canvasVisible}
           introPhase={introPhase}
           introScrollProgress={introScrollProgress}
           isLoading={isLoading}
