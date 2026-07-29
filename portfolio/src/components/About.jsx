@@ -1,5 +1,5 @@
 import React from 'react'
-import { CodeIcon } from './Icons'
+import Lanyard from './Lanyard'
 
 export const About = () => {
   return (
@@ -12,7 +12,7 @@ export const About = () => {
       <div className="about-grid">
         <div className="about-text">
           <p className="about-objective">
-            Computer Science undergraduate (CGPA: 8.49) with hands-on experience in full-stack development, machine learning, and UI/UX design.
+            Computer Science undergraduate (CGPA: 8.77) with hands-on experience in full-stack development, machine learning, and UI/UX design.
           </p>
           <p className="about-body">
             Highly motivated and detail-oriented developer seeking an internship or entry-level role to apply technical expertise in real-world software engineering environments. Passionate about designing robust architectures, deploying intelligent ML pipelines, and framing premium visual experiences.
@@ -30,7 +30,7 @@ export const About = () => {
                 <p style={{ fontSize: '0.8rem' }}>APJ Abdul Kalam Technological University</p>
               </div>
               <div className="academic-meta">
-                <span className="academic-score">8.49 CGPA</span>
+                <span className="academic-score">8.77 CGPA</span>
                 <p className="academic-year">2023 - Present</p>
               </div>
             </div>
@@ -60,17 +60,7 @@ export const About = () => {
         </div>
 
         <div className="about-visual">
-          <div className="avatar-frame">
-            <div className="avatar-img-placeholder">
-              <CodeIcon />
-              <div className="tech-signature">C.C.BIJU</div>
-              <div className="signature-role">Full-Stack & ML</div>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-gray)', marginTop: '1.2rem', fontFamily: 'monospace' }}>
-                LOC: Thrissur, Kerala<br/>
-                SYS: React / Next / FastAPIs / YOLO
-              </p>
-            </div>
-          </div>
+          <Lanyard position={[0, 0, 23]} gravity={[0, -40, 0]} />
         </div>
       </div>
     </section>

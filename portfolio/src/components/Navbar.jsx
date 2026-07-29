@@ -10,7 +10,7 @@ export const Navbar = ({
   return (
     <>
       {/* HEADER NAVBAR (Only visible after the scroll intro completes) */}
-      <nav className={`navbar ${introScrollProgress >= 0.9 ? 'visible' : ''}`}>
+      <nav className="navbar visible">
         <a href="#home" className="nav-logo" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}>
           CHRISTEPHER<span className="logo-highlight">.C.B</span>
         </a>

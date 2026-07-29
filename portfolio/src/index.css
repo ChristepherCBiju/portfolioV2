@@ -16,7 +16,7 @@
   --glow-yellow: rgba(253, 224, 76, 0.2);
 
   /* Fonts */
-  --font-heading: 'Megabeat', 'Unbounded', 'Orbitron', 'Syncopate', sans-serif;
+  --font-heading: 'DIN Condensed', 'Barlow Condensed', 'Unbounded', 'Orbitron', sans-serif;
   --font-body: 'Space Grotesk', 'Inter', system-ui, sans-serif;
 }
 
