@@ -38,6 +38,16 @@ export const projectsData = [
     isHackathonFinalist: false,
     github: "https://github.com/ChristepherCBiju",
     live: "https://github.com/ChristepherCBiju"
+  },
+  {
+    id: 5,
+    title: "SignLink",
+    desc: "Real-time AI application bridging communication gaps for the deaf and hard-of-hearing. Processes webcam feeds to map gestures into 42 hand coordinates, classifying them into text and spoken alphabets using supervised machine learning.",
+    category: "Machine Learning",
+    tags: ["Computer Vision", "Python", "MediaPipe", "AI/ML"],
+    isHackathonFinalist: false,
+    github: "https://github.com/ChristepherCBiju",
+    live: "https://github.com/ChristepherCBiju"
   }
 ];
 
@@ -75,9 +85,9 @@ export const internshipsData = [
   {
     id: 1,
     company: "GP3 Cloud Innovations (OPC) Pvt Ltd",
-    role: "Python & Machine Learning Intern",
+    role: "Python & Data Science Intern",
     date: "Dec 2025 · 1 month",
-    desc: "Completed an internship focused on Python programming and Machine Learning project development."
+    desc: "Worked as a Data Science intern building a California House Price Predictor. Cleaned socioeconomic and geographical datasets, engineered predictive features, and trained regression models to deploy real-world machine learning pipelines within commercial workflows."
   },
   {
     id: 2,
