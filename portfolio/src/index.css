@@ -1,0 +1,108 @@
+/* Custom fonts pre-loaded from Google Fonts in index.html */
+
+:root {
+  /* Hex color scheme requested by the user */
+  --bg-dark: #000000;
+  --accent-lime: #CEF549;
+  --accent-yellow: #FDE04C;
+  --text-white: #FFFFFF;
+  
+  /* Helper secondary colors */
+  --bg-card: #0c0c0c;
+  --bg-input: #141414;
+  --text-gray: #B3B3B3;
+  --border-gray: #202020;
+  --glow-lime: rgba(206, 245, 73, 0.25);
+  --glow-yellow: rgba(253, 224, 76, 0.2);
+
+  /* Fonts */
+  --font-heading: 'DIN Condensed', 'Barlow Condensed', 'Unbounded', 'Orbitron', sans-serif;
+  --font-body: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: transparent;
+  color: var(--text-white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+  letter-spacing: 0.2px;
+}
+
+/* Custom cybernetic grid background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  background-image: 
+    linear-gradient(rgba(206, 245, 73, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(206, 245, 73, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-lime);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-yellow);
+}
+
+/* Root container */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+}
+
+li {
+  list-style: none;
+}
+
+/* Reveal transition classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Utility headings */
+.heading-megabeat {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
